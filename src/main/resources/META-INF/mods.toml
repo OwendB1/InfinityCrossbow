@@ -1,7 +1,7 @@
 modLoader="javafml"
 loaderVersion="[32,)"
 license="LGPL v3"
-issueTrackerURL=""
+issueTrackerURL="https://github.com/OwendB1/InfinityCrossbow/issues"
 
 [[mods]]
 modId="infinitycrossbow"
