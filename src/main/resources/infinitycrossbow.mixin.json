@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.owendb.infinitycrossbow.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "CrossbowMixin",
+    "InfinityMixin"
+  ],
+  "server": [
+    "CrossbowMixin",
+    "InfinityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "infinitycrossbow.mixin-refmap.json"
+}

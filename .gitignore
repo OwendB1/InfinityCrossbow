@@ -1,0 +1,17 @@
+# ForgeGradle
+/.gradle
+/build
+/run
+
+# Eclipse
+.classpath
+.project
+/.settings
+/bin
+
+# IntelliJ
+/.idea
+*.iml
+*.ipr
+*.iws
+/out
