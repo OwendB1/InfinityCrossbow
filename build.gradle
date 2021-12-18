@@ -17,7 +17,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = project.release_version
 group = "com.owendb.infinitycrossbow" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = project.curseforge_id
+archivesBaseName = "infinitycrossbow"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
