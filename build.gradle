@@ -23,8 +23,8 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-//    mappings channel: 'snapshot', version: forge_mappings
-    mappings channel: 'official', version: game_version
+    mappings channel: 'snapshot', version: forge_mappings
+//    mappings channel: 'official', version: game_version
 
     runs {
         client {

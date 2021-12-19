@@ -15,25 +15,25 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(CrossbowItem.class)
 public abstract class CrossbowMixin {
 
-    @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getProjectile(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;"), method = "use")
-    private ItemStack onGetProjectileInUse(PlayerEntity instance, ItemStack bow) {
-        int i = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
+    @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;findAmmo(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;"), method = "onItemRightClick")
+    private ItemStack onItemRightClickInUse(PlayerEntity instance, ItemStack bow) {
+        int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow);
         if (i > 0) {
             return new ItemStack(Items.ARROW);
         }
-        return instance.getProjectile(bow);
+        return instance.findAmmo(bow);
     }
 
-    @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;loadProjectile(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;ZZ)Z"), method = "tryLoadProjectiles")
-    private static boolean onLoadProjectileInTryLoadProjectiles(LivingEntity entity, ItemStack bow, ItemStack projectile, boolean p_40866_, boolean p_40867_) {
+    @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;func_220023_a(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;ZZ)Z"), method = "hasAmmo")
+    private static boolean onHasAmmoInTryLoadProjectiles(LivingEntity entity, ItemStack bow, ItemStack projectile, boolean p_40866_, boolean p_40867_) {
         if (entity instanceof PlayerEntity) {
-            int i = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
+            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow);
             if (i > 0) {
                 addChargedProjectile(bow, new ItemStack(Items.ARROW));
                 return true;
             }
         }
-        return loadProjectile(entity, bow, projectile, p_40866_, p_40867_);
+        return func_220023_a(entity, bow, projectile, p_40866_, p_40867_);
     }
 
     @Shadow
@@ -41,7 +41,7 @@ public abstract class CrossbowMixin {
     }
 
     @Shadow
-    protected static boolean loadProjectile(LivingEntity p_40863_, ItemStack p_40864_, ItemStack p_40865_, boolean p_40866_, boolean p_40867_) {
+    protected static boolean func_220023_a(LivingEntity p_40863_, ItemStack p_40864_, ItemStack p_40865_, boolean p_40866_, boolean p_40867_) {
         return false;
     }
 
