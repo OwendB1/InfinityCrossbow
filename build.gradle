@@ -17,13 +17,14 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = project.release_version
 group = "com.owendb.infinitycrossbow" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "infinitycrossbow"
+archivesBaseName = "infinitycrossbow-${project.game_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.16.5'
+//    mappings channel: 'snapshot', version: forge_mappings
+    mappings channel: 'official', version: game_version
 
     runs {
         client {
