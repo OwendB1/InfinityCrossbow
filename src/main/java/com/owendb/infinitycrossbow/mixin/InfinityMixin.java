@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Enchantment.class)
 public class InfinityMixin {
 
-    @Inject(at = @At("HEAD"), method = "canEnchant", cancellable = true)
-    private void onCanEnchant(ItemStack itemToEnchant, CallbackInfoReturnable<Boolean> info) {
+    @Inject(at = @At("HEAD"), method = "canApply", cancellable = true)
+    private void onCanApply(ItemStack itemToEnchant, CallbackInfoReturnable<Boolean> info) {
         if (itemToEnchant.getItem() instanceof CrossbowItem) {
             Enchantment e = (Enchantment) ((Object)this);
             if (e instanceof InfinityEnchantment) {
